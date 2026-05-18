@@ -48,4 +48,51 @@ export default function Home() {
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  header: {
+    padding: 25,
+    paddingTop: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#000000c0',
+    borderBottomStartRadius: 30,
+    borderBottomEndRadius: 30,
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: '#000000c0',
+    borderBottomStartRadius: 30,
+    borderBottomEndRadius: 30,
+    paddingBottom: 30,
+  },
+  inputContainer: {
+    marginVertical: 20,
+    paddingHorizontal: 20,
+    backgroundColor: '#000',
+    elevation: 40,
+    flex: 1,
+    height: 50,
+    borderRadius: 30,
+    justifyContent: 'center',
+  },
+  iconContainer : {
+    borderRadius: 25,
+    height: 50,
+    width: 50,
+    backgroundColor: '#000',
+    elevation: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+})
