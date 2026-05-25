@@ -34,6 +34,34 @@ export default function Home() {
       setTextInput('');
     }
 
+    function markProduto (itemId) {
+      const newItems = items.map((item) =>{
+        if (item.id == itemId) {
+          return { ...item, bought: true }
+        }
+        return item;
+      });
+      setItems(newItems);
+    }
+
+    function unmarkProduto (itemId) {
+      const newItems = items.map((item) =>{
+        if (item.id == itemId) {
+          return { ...item, bought: false }
+        }
+        return item;
+      });
+      setItems(newItems);
+    }
+
+    function remove (itemId) {
+
+    }
+
+    function removeAll () {
+
+    }
+
   return (
     <View style={{flex:1, backgroundColor: '#000'}}>
         <ImageBackground
@@ -52,7 +80,11 @@ export default function Home() {
               data={items}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item}) => 
-                <ItemList item={item}/>
+                <ItemList 
+                  item={item}
+                  markItem={markProduto}
+                  unmarkItem={unmarkProduto}
+                />
               }
             />
 
