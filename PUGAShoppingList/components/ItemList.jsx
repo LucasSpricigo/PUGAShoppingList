@@ -2,20 +2,24 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 
-export default function ItemList({ item, markItem, unmarkItem }) {
+export default function ItemList({ item, markItem, unmarkItem, removeItem }) {
   return (
     <View style={styles.itemList}>
       <View style= {{ flex: 1 }}>
-        <Text style={styles.itemToBuy}>{item?.name}</Text>
+          <Text style={
+            [styles.itemToBuy, 
+              item?.bought ? { textDecorationLine: 'line-through' } : {}
+            ]}>
+              {item?.name}</Text>
       </View>
       {!item?.bought ? (
         <TouchableOpacity
           style={styles.actionIcon}
-          onPress={() => markItem{item.id}}
-          >
+          onPress={() => markItem(item.id)}
+        >
             <Ionicons name='bag-check-outline' size={24} color='#fff' />
           </TouchableOpacity>
-      ) : (
+        ) : (
           <TouchableOpacity
             style={styles.actionIcon}
             onPress={() => {}}
@@ -26,7 +30,7 @@ export default function ItemList({ item, markItem, unmarkItem }) {
 
         <TouchableOpacity
           style={[styles.actionIcon, { backgrounColor: 'darkred'}]}
-          onPress={() => {}}
+          onPress={() => removeItem(item.id)}
         >
           <Ionicons name='trash-bin-outline' size={24} color='#fff' />
       </TouchableOpacity>

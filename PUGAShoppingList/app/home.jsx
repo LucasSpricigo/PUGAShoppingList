@@ -54,12 +54,35 @@ export default function Home() {
       setItems(newItems);
     }
 
-    function remove (itemId) {
-
+    function removeProduto (itemId) {
+      Alert.alert('Excluir Produto?',
+         'Confirma a exclusão deste Produto?',
+        [
+          {
+            text:'Sim', onPress: ()=> {
+              const newItems = item.filter(item => item.id != itemId);
+              setItems(newItems);
+            }
+          },
+          {
+            text: 'Cancelar', style: 'cancel'  
+          }
+        ]
+      );
     }
 
     function removeAll () {
-
+         Alert.alert('Limpar Lista?',
+         'Confirma a exclusão de todos os Produtos?',
+        [
+          {
+            text:'Sim', onPress: ()=> { setItems([]); }
+          },
+          {
+            text: 'Cancelar', style: 'cancel'  
+          }
+        ]
+      );
     }
 
   return (
@@ -71,7 +94,7 @@ export default function Home() {
         >
             <View style={styles.header}>
                 <Text style={styles.title}>Lista de Compras</Text>
-                <Ionicons name='trash' size={32} color="#fff"/>
+                <Ionicons name='trash' size={32} color="#fff" onPress={removeAll}/>
             </View>
 
             {/* Lista de Produtos */ }
@@ -84,6 +107,7 @@ export default function Home() {
                   item={item}
                   markItem={markProduto}
                   unmarkItem={unmarkProduto}
+                  removeItem={removeProduto}
                 />
               }
             />
