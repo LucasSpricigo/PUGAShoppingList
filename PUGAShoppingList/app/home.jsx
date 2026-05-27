@@ -60,7 +60,7 @@ export default function Home() {
         [
           {
             text:'Sim', onPress: ()=> {
-              const newItems = item.filter(item => item.id != itemId);
+              const newItems = items.filter(item => item.id != itemId);
               setItems(newItems);
             }
           },
