@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useEffectEvent} from 'react';
 import {
     Alert, 
     FlatList,
@@ -11,10 +11,39 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ItemList from '../components/ItemList';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Home() {
   const [textInput, setTextInput] = useState('');
   const [items, setItems] = useState ([]);
+
+  useEffect (() => {
+    getItemsFromDevice();
+  }, []);
+
+  useEffect(() => {
+    saveItemToDevice();
+  }, [items]);
+
+    // Função para salvar a lista no storage do aparelho
+    const saveItemToDevice = async () => {
+      try {
+        const itemJson = JSON.stringify(items);
+        await AsyncStorage.setItem('pugaShoppingList', itemJson);
+      } catch (error){
+        console.log(`Erro: ${error}`);
+      }
+    };
+
+    const getItemsFromDevice = async () => {
+      try {
+        const items = await AsyncStorage.getItem('pugaShoppingList');
+        if (items != null)
+          setItems(JSON.parse(items));
+      } catch (error) {
+        console.log(`Erro: ${error}`)
+      }
+    }
 
     function addProduto() {
       //console.log(textInput);
